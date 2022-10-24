@@ -1,0 +1,15 @@
+db:
+  address: localhost
+  port: 3306
+  name: scanning
+  user: root
+  password: '12345678'
+application:
+  port: 8080
+redis:
+  url: localhost:6379
+  db: 0
+  max_retries: 10
+env: dev  
+worker:
+  topic: scanning_signal
