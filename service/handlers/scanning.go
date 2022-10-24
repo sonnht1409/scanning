@@ -35,6 +35,7 @@ func (s ServiceHandler) ViewResult(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "ok",
 	})
+	s.logicLayer.GetRepoContent("sonnht1409", "capstone-etours")
 }
 
 func (s ServiceHandler) StopScanning(c *gin.Context) {

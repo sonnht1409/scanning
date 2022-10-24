@@ -9,20 +9,23 @@ import (
 	"github.com/sonnht1409/scanning/service/config"
 	"github.com/sonnht1409/scanning/service/connectors/cache"
 	"github.com/sonnht1409/scanning/service/connectors/db"
+	"github.com/sonnht1409/scanning/service/handlers/logic"
 	"gorm.io/gorm"
 )
 
 type ServiceHandler struct {
-	r     *gin.Engine
-	db    *gorm.DB
-	cache *redis.Client
+	r          *gin.Engine
+	db         *gorm.DB
+	cache      *redis.Client
+	logicLayer logic.IServiceLogic
 }
 
 func NewServiceHandlers() ServiceHandler {
 	s := ServiceHandler{
-		r:     gin.Default(),
-		db:    db.NewDB(),
-		cache: cache.NewCache(),
+		r:          gin.Default(),
+		db:         db.NewDB(),
+		cache:      cache.NewCache(),
+		logicLayer: logic.NewServiceLogic(),
 	}
 	return s
 }
