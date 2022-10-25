@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _ScanningStatusName = "QUEUEDIN_PROGRESSSUCCESSFAILURE"
+const _ScanningStatusName = "NO_STATUSQUEUEDIN_PROGRESSSUCCESSFAILURE"
 
-var _ScanningStatusIndex = [...]uint8{0, 6, 17, 24, 31}
+var _ScanningStatusIndex = [...]uint8{0, 9, 15, 26, 33, 40}
 
-const _ScanningStatusLowerName = "queuedin_progresssuccessfailure"
+const _ScanningStatusLowerName = "no_statusqueuedin_progresssuccessfailure"
 
 func (i ScanningStatus) String() string {
 	if i < 0 || i >= ScanningStatus(len(_ScanningStatusIndex)-1) {
@@ -25,30 +25,34 @@ func (i ScanningStatus) String() string {
 // Re-run the stringer command to generate them again.
 func _ScanningStatusNoOp() {
 	var x [1]struct{}
-	_ = x[QUEUED-(0)]
-	_ = x[IN_PROGRESS-(1)]
-	_ = x[SUCCESS-(2)]
-	_ = x[FAILURE-(3)]
+	_ = x[NO_STATUS-(0)]
+	_ = x[QUEUED-(1)]
+	_ = x[IN_PROGRESS-(2)]
+	_ = x[SUCCESS-(3)]
+	_ = x[FAILURE-(4)]
 }
 
-var _ScanningStatusValues = []ScanningStatus{QUEUED, IN_PROGRESS, SUCCESS, FAILURE}
+var _ScanningStatusValues = []ScanningStatus{NO_STATUS, QUEUED, IN_PROGRESS, SUCCESS, FAILURE}
 
 var _ScanningStatusNameToValueMap = map[string]ScanningStatus{
-	_ScanningStatusName[0:6]:        QUEUED,
-	_ScanningStatusLowerName[0:6]:   QUEUED,
-	_ScanningStatusName[6:17]:       IN_PROGRESS,
-	_ScanningStatusLowerName[6:17]:  IN_PROGRESS,
-	_ScanningStatusName[17:24]:      SUCCESS,
-	_ScanningStatusLowerName[17:24]: SUCCESS,
-	_ScanningStatusName[24:31]:      FAILURE,
-	_ScanningStatusLowerName[24:31]: FAILURE,
+	_ScanningStatusName[0:9]:        NO_STATUS,
+	_ScanningStatusLowerName[0:9]:   NO_STATUS,
+	_ScanningStatusName[9:15]:       QUEUED,
+	_ScanningStatusLowerName[9:15]:  QUEUED,
+	_ScanningStatusName[15:26]:      IN_PROGRESS,
+	_ScanningStatusLowerName[15:26]: IN_PROGRESS,
+	_ScanningStatusName[26:33]:      SUCCESS,
+	_ScanningStatusLowerName[26:33]: SUCCESS,
+	_ScanningStatusName[33:40]:      FAILURE,
+	_ScanningStatusLowerName[33:40]: FAILURE,
 }
 
 var _ScanningStatusNames = []string{
-	_ScanningStatusName[0:6],
-	_ScanningStatusName[6:17],
-	_ScanningStatusName[17:24],
-	_ScanningStatusName[24:31],
+	_ScanningStatusName[0:9],
+	_ScanningStatusName[9:15],
+	_ScanningStatusName[15:26],
+	_ScanningStatusName[26:33],
+	_ScanningStatusName[33:40],
 }
 
 // ScanningStatusString retrieves an enum value from the enum constants string name.

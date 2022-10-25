@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/bsm/redislock"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v9"
 	"github.com/sonnht1409/scanning/service/config"
@@ -18,6 +19,7 @@ type ServiceHandler struct {
 	db         *gorm.DB
 	cache      *redis.Client
 	logicLayer logic.IServiceLogic
+	locker     *redislock.Client
 }
 
 func NewServiceHandlers() ServiceHandler {
@@ -27,6 +29,7 @@ func NewServiceHandlers() ServiceHandler {
 		cache:      cache.NewCache(),
 		logicLayer: logic.NewServiceLogic(),
 	}
+	s.locker = cache.NewCacheLock(s.cache)
 	return s
 }
 
@@ -36,9 +39,11 @@ func (s ServiceHandler) ApiRegister() {
 			"message": "pong",
 		})
 	})
+	s.r.GET("/api/v1/scanning/results", s.ViewResult)
+	s.r.GET("/api/v1/scanning/result", s.ViewSpecificScanningProcess)
 	s.r.POST("/api/v1/scanning", s.CreateScanning)
-	s.r.GET("/api/v1/scanning/result", s.ViewResult)
-	s.r.PUT("/api/v1/scanning/:id", s.StopScanning)
+	s.r.POST("/api/v1/scanning/retry", s.RetryScan)
+
 }
 
 func (s ServiceHandler) Start() {

@@ -3,6 +3,7 @@ package logic
 import (
 	"context"
 	"encoding/base64"
+	"strings"
 
 	"github.com/google/go-github/v48/github"
 	"github.com/sonnht1409/scanning/service/common"
@@ -49,7 +50,6 @@ func (s ServiceLogic) GetRepoContent(owner, repo string) ([]models.GithubFileCon
 			signBytes, _ := base64.StdEncoding.DecodeString(m["content"].(string))
 
 			strContent := string(signBytes)
-			log.Info("file content: ", strContent)
 			contents = append(contents, models.GithubFileContent{
 				Path:    *entry.Path,
 				Url:     *entry.URL,
@@ -59,4 +59,20 @@ func (s ServiceLogic) GetRepoContent(owner, repo string) ([]models.GithubFileCon
 	}
 
 	return contents, nil
+}
+
+/*
+Assume that public repos have format like: https://github.com/guardrailsio/backend-engineer-challenge
+First, clear https://
+Then split github.com/guardrailsio/backend-engineer-challenge into [github.com,guardrailsio,backend-engineer-challenge]
+Then return guardrailsio
+*/
+func (s ServiceLogic) GetRepoOwner(repoUrl string) string {
+	url := strings.ReplaceAll(repoUrl, "https://", "")
+	url = strings.ReplaceAll(url, "http://", "")
+	strs := strings.Split(url, "/")
+	if len(strs) < 2 {
+		return ""
+	}
+	return strs[1]
 }

@@ -4,7 +4,8 @@ package models
 type ScanningStatus int
 
 const (
-	QUEUED ScanningStatus = iota
+	NO_STATUS ScanningStatus = iota
+	QUEUED
 	IN_PROGRESS
 	SUCCESS
 	FAILURE

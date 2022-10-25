@@ -12,6 +12,8 @@ var _ IServiceLogic = (*ServiceLogic)(nil)
 //go:generate mockery --name IServiceLogic --inpackage
 type IServiceLogic interface {
 	GetRepoContent(string, string) ([]models.GithubFileContent, error)
+	GetRepoOwner(repoUrl string) string
+	CheckRule(content string, rule models.RegexRule) (bool, []int)
 }
 
 type ServiceLogic struct {

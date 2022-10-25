@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 
+	"github.com/bsm/redislock"
 	"github.com/go-redis/redis/v9"
 	"github.com/sonnht1409/scanning/service/config"
 )
@@ -17,4 +18,9 @@ func NewCache() *redis.Client {
 		panic(err)
 	}
 	return redisClient
+}
+
+func NewCacheLock(client *redis.Client) *redislock.Client {
+	locker := redislock.New(client)
+	return locker
 }
