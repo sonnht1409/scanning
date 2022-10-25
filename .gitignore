@@ -1,2 +1,3 @@
 /service/cmd/server
 /service/vendor
+/service/*.out
