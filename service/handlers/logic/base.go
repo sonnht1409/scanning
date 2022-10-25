@@ -14,6 +14,9 @@ type IServiceLogic interface {
 	GetRepoContent(string, string) ([]models.GithubFileContent, error)
 	GetRepoOwner(repoUrl string) string
 	CheckRule(content string, rule models.RegexRule) (bool, []int)
+	getRepository(owner, repo string) (*github.Repository, error)
+	getAllFilePaths(owner, repo, branch string) ([]*github.TreeEntry, error)
+	getFileContent(owner, repo, sha string) (*github.Blob, error)
 }
 
 type ServiceLogic struct {

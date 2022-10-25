@@ -1,5 +1,5 @@
 db:
-  address: localhost
+  address: host.docker.internal
   port: 3306
   name: scanning
   user: root
@@ -7,7 +7,7 @@ db:
 application:
   port: 8080
 redis:
-  url: localhost:6379
+  url: host.docker.internal:6379
   db: 0
   max_retries: 10
 env: dev  
