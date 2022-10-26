@@ -115,6 +115,7 @@ func (s ServiceHandler) ViewResult(c *gin.Context) {
 			QueuedAt:     v.QueuedAt,
 			ScanningAt:   v.ScanningAt,
 			FinishedAt:   v.FinishedAt,
+			Findings:     v.Findings,
 		})
 	}
 
@@ -224,6 +225,7 @@ func (s ServiceHandler) ViewSpecificScanningProcess(c *gin.Context) {
 			QueuedAt:     scanningModel.QueuedAt,
 			ScanningAt:   scanningModel.ScanningAt,
 			FinishedAt:   scanningModel.FinishedAt,
+			Findings:     scanningModel.Findings,
 		},
 	})
 }

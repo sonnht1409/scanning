@@ -156,25 +156,41 @@ Run these commands in order
 - View one scanning process
     Request
     ```sh
-        curl --location --request GET 'localhost:8080/api/v1/scanning/result?scan_unique_id=77769549-899a-4347-903a-03c4e37dd0cb'
+        curl --location --request GET 'localhost:8080/api/v1/scanning/result?scan_unique_id=6ae2b12a-9366-4a1e-9c97-212cd9d24e06'
     ```
     Response
     ```json
     {
         "data": {
-            "id": 19,
-            "repo_name": "gin",
-            "repo_url": "https://github.com/gin-gonic/gin",
-            "scan_unique_id": "77769549-899a-4347-903a-03c4e37dd0cb",
-            "scanning_status": "SUCCESS",
-            "created_at": "2022-10-26T17:23:39+07:00",
-            "updated_at": "2022-10-26T17:24:49+07:00",
-            "queued_at": "2022-10-26T17:23:39+07:00",
-            "finished_at": "2022-10-26T17:24:49+07:00",
-            "scanning_at": "2022-10-26T17:23:39+07:00"
+            "id": 1,
+            "repo_name": "go-crud",
+            "repo_url": "https://github.com/sonnht1409/go-crud",
+            "scan_unique_id": "6ae2b12a-9366-4a1e-9c97-212cd9d24e06",
+            "scanning_status": "FAILURE",
+            "created_at": "2022-10-25T16:54:25+07:00",
+            "updated_at": "2022-10-25T18:14:19+07:00",
+            "queued_at": "2022-10-25T16:54:25+07:00",
+            "finished_at": "2022-10-25T18:14:19+07:00",
+            "scanning_at": "2022-10-25T18:14:13+07:00",
+            "findings": [
+                {
+                    "rule_name": "PublicKeyCheck",
+                    "location": {
+                        "path": "abc.go",
+                        "line": 3
+                    }
+                },
+                {
+                    "rule_name": "PrivateKeyCheck",
+                    "location": {
+                        "path": "xyz.go",
+                        "line": 3
+                    }
+                }
+            ]
         },
         "message": "ok"
-    }    
+    }
     ```
 - Retry one scanning process
      Request
