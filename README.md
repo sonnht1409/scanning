@@ -25,7 +25,7 @@ Prerequisite:
     - Go 1.19+
     - Docker
 
-## Create Database
+## create database
 
 [Run this script](https://github.com/sonnht1409/scanning/blob/main/service/migration/scannings.sql)
 

@@ -1,3 +1,4 @@
+CREATE SCHEMA `scanning` ;
 CREATE TABLE `scannings` (
   `id` bigint(20) unsigned PRIMARY KEY AUTO_INCREMENT, 
   `repo_name` varchar(255) NOT NULL, 
