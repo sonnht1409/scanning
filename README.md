@@ -17,13 +17,20 @@ How to do a scan:
 
 <img src="https://i.postimg.cc/C5JdnQs2/Screen-Shot-2022-10-26-at-17-35-02.png">
 
+The idea:
+
+- For scanning signup, use redis pub-sub mechanism to run the scanning process in the background
+- At anytime, client could view the scanning processs status, regardless the background process status
+- If there is problem with the scanning process or client demand, the client could re-run any speficic process without signing up new one. 
+
 # setup
 
 Prerequisite:
-    - MySQL 8.0.0+
-    - Redis latest
-    - Go 1.19+
-    - Docker
+
+- MySQL 8.0.0+
+- Redis latest
+- Go 1.19+
+- Docker
 
 ## create database
 
@@ -210,7 +217,11 @@ Run these commands in order
 
 # error
 
-- Redis connection:
+- If there is redis connection issue:
     ```sh
     docker run -d -p 6379:6379 redis:latest
     ```
+
+# extendable
+- Change redis pub-sub into other brokers mechanism like RabbitMQ, Google pub-sub
+- Improve the background process to allow client stop the process at anytime
