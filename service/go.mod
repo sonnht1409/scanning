@@ -3,6 +3,7 @@ module github.com/sonnht1409/scanning/service
 go 1.19
 
 require (
+	github.com/DATA-DOG/go-sqlmock v1.5.0
 	github.com/bsm/redislock v0.8.2
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-redis/redis/v9 v9.0.0-rc.1
@@ -12,22 +13,19 @@ require (
 	github.com/spf13/viper v1.13.0
 	github.com/stretchr/testify v1.8.0
 	go.uber.org/zap v1.23.0
+	golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5
 	gorm.io/driver/mysql v1.4.3
 	gorm.io/gorm v1.24.0
 )
 
 require (
-	github.com/DATA-DOG/go-sqlmock v1.5.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-redis/redis/v8 v8.8.0 // indirect
-	github.com/go-redis/redismock/v8 v8.0.6 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-github/v41 v41.0.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/objx v0.4.0 // indirect
-	go.opentelemetry.io/otel v0.19.0 // indirect
-	go.opentelemetry.io/otel/metric v0.19.0 // indirect
-	go.opentelemetry.io/otel/trace v0.19.0 // indirect
+	google.golang.org/appengine v1.6.7 // indirect
 )
 
 require (

@@ -60,7 +60,7 @@ func (s ServiceLogic) GetRepoContent(owner, repo string) ([]models.GithubFileCon
 	}
 
 	log.Info("GetRepoContent ", *repository.URL, repository.GetDefaultBranch())
-	entries, err := s.getAllFilePaths("sonnht1409", "go-crud", repository.GetDefaultBranch())
+	entries, err := s.getAllFilePaths(owner, repo, repository.GetDefaultBranch())
 	if err != nil {
 		log.Errorf("GetGitTree error %s %s %s", owner, repo, repository.GetDefaultBranch())
 		return contents, err
@@ -73,7 +73,7 @@ func (s ServiceLogic) GetRepoContent(owner, repo string) ([]models.GithubFileCon
 		log.Infof("Get Entry %s %s\n", *entry.Path, *entry.URL)
 		blob, err := s.getFileContent(owner, repo, *entry.SHA)
 		if err != nil {
-			log.Errorf("Get File Content err %s %s \n", *entry.Path, *entry.URL)
+			log.Errorf("Get File Content err %s %s %s\n", *entry.Path, *entry.URL, err.Error())
 			continue
 		}
 		if blob != nil && blob.Content != nil {

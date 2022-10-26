@@ -13,3 +13,4 @@ redis:
 env: dev  
 worker:
   topic: scanning_signal
+access_token: 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  

@@ -40,6 +40,7 @@ type Config struct {
 		DB         int    `mapstructure:"db"`
 		MaxRetries int    `mapstructure:"max_retries"`
 	}
+	AccessToken string `mapstructure:"access_token"`
 }
 
 // InitConfig ...

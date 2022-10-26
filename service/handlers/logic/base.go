@@ -1,10 +1,12 @@
 package logic
 
 import (
-	"net/http"
+	"context"
 
 	"github.com/google/go-github/v48/github"
+	"github.com/sonnht1409/scanning/service/config"
 	"github.com/sonnht1409/scanning/service/models"
+	"golang.org/x/oauth2"
 )
 
 var _ IServiceLogic = (*ServiceLogic)(nil)
@@ -24,7 +26,13 @@ type ServiceLogic struct {
 }
 
 func NewServiceLogic() ServiceLogic {
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: config.Values.AccessToken},
+	)
+	tc := oauth2.NewClient(context.Background(), ts)
+
+	client := github.NewClient(tc)
 	return ServiceLogic{
-		githubClient: github.NewClient(http.DefaultClient),
+		githubClient: client,
 	}
 }
