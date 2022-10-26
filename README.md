@@ -44,9 +44,10 @@ redis:
   url: {your-redis-host}:{your-redis-port}
   db: 0
 ```
-###notes
 
-If using docker, pls set host of local redis & db into `host.docker.internal`
+### notes
+
+If using docker, pls set host of local redis address & db host into `host.docker.internal`
 
 ## To run rest api server
 Using Docker
@@ -55,7 +56,16 @@ Run these commands in order
 1. cd service
 2. docker build -t scanning-server -f dockerfile.server .
 3. docker run -p 8080:8080 scanning-server
-```    
+```
+
+Build binary image
+Run these commands in order
+```sh
+1. cd service
+2. make build
+3. make server
+```
+
 ## To run worker
 Using Docker
 Run these commands in order
@@ -63,6 +73,14 @@ Run these commands in order
 1. cd service
 2. docker build -t scanning-worker -f dockerfile.worker .
 3. docker run scanning-worker
+```
+
+Build binary image
+Run these commands in order
+```sh
+1. cd service
+2. make build
+3. make worker
 ```
 
 # api collection
